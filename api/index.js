@@ -25,12 +25,13 @@ app.use(express.json());
 
 // * routes
 app.get("/", (req, res) => {
-  res.send("Api routes:");
-  res.send("GET /api/users - get all users");
-  res.send("POST /api/users - create a new user");
-  res.send("DELETE /api/users/:id - delete a user \n");
-  res.send("POST /api/auth/login - login a user");
-  res.send("POST /api/auth/register - register a new user");
+  res.write("Api routes:\n\n");
+  res.write("GET /api/users - get all users\n");
+  res.write("POST /api/users - create a new user\n");
+  res.write("DELETE /api/users/:id - delete a user \n\n");
+  res.write("POST /api/auth/login - login a user\n");
+  res.write("POST /api/auth/register - register a new user");
+  res.end();
 });
 
 app.use("/api/users", userRoutes);
