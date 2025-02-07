@@ -29,12 +29,19 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.write("Api routes:\n\n");
   res.write("GET /api/users - get all users\n");
-  res.write("POST /api/users - create a new user\n");
   res.write("DELETE /api/users/:id - delete a user \n\n");
   res.write("POST /api/auth/login - login a user\n");
-  res.write("POST /api/auth/register - register a new user");
+  res.write("POST /api/auth/register - register a new user\n\n");
+  res.write("GET /api/workoutPlans - get all workout plans\n");
+  res.write("POST /api/workoutPlans - create a new workout plan\n");
+  res.write("DELETE /api/workoutPlans/:id - delete a workout plan\n");
+  res.write("PATCH /api/workoutPlans/:id - update a workout plan\n\n");
+  res.write("GET /api/exercises - get all exercises\n");
+  res.write("POST /api/exercises - create a new exercise\n\n");
   res.end();
 });
+
+
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);

@@ -2,15 +2,15 @@ const WorkoutPlan = require("../models/workoutPlanModel");
 
 const createWorkoutPlan = async (req, res) => {
 
-    const { name, description, exercises } = req.body;
+    const { title, description, exercises } = req.body;
     
     try {
         
         const workoutPlan = await WorkoutPlan.create({
-            name,
+            title,
             description,
             exercises,
-            user: "test",
+            user: req.body.id,
         });
 
         res.status(201).json({ workoutPlan });
@@ -22,7 +22,7 @@ const createWorkoutPlan = async (req, res) => {
 
 const getAllWorkoutPlans = async (req, res) => {
     try {
-        const workoutPlans = await WorkoutPlan.find().populate("user", "name");
+        const workoutPlans = await WorkoutPlan.find().populate("user", "title");
         res.status(200).json({ workoutPlans });
     }
     catch (error) {
@@ -56,7 +56,7 @@ const deleteWorkoutPlan = async (req, res) => {
 const updateWorkoutPlan = async (req, res) => {
     const { id: userId } = req.user;
     const { id: workoutPlanId } = req.params;
-    const { name, description, exercises } = req.body;
+    const { title, description, exercises } = req.body;
 
     try {
         const workoutPlan = await WorkoutPlan.findById(workoutPlanId);
@@ -69,7 +69,7 @@ const updateWorkoutPlan = async (req, res) => {
             return res.status(403).json({ message: "You are not authorized to update this workout plan!" });
         }
 
-        workoutPlan.name = name;
+        workoutPlan.title = title;
         workoutPlan.description = description;
         workoutPlan.exercises = exercises;
 
