@@ -8,5 +8,6 @@ const adminMiddleware = require("../middleware/adminMiddleware");
 router.post("/", authMiddleware, adminMiddleware, userController.createUser);
 router.get("/", authMiddleware, adminMiddleware, userController.getAllUsers);
 router.delete("/:id", authMiddleware, adminMiddleware, userController.deleteUser);
+router.patch("/:id", authMiddleware, adminMiddleware, userController.updateUser);
 
 module.exports = router;

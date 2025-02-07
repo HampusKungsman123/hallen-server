@@ -23,6 +23,25 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
+    followers: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      default: [],
+    },
+    following: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      default: [],
+    },
+    profilePicture: {
+      type: String,
+      default: "./assets/defaultPfp.png",
+    },
+    likedWorkoutPlans: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "WorkoutPlan",
+      default: [],
+    },
     role: {
       type: String,
       enum: ["user", "admin"],
