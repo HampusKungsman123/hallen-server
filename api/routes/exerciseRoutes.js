@@ -11,5 +11,8 @@ router.post('/', exerciseController.createExercise);
 //> GET /api/exercises
 router.get('/', exerciseController.getAllExercises);
 
+//> DELETE /api/exercises/:id
+router.delete('/:id', exerciseController.deleteExercise);
+
 
 module.exports = router;

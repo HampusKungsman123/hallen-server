@@ -26,7 +26,26 @@ const getAllExercises = async (req, res) => {
     }
 }
 
+const deleteExercise = async (req, res) => {
+    const { id: exerciseId } = req.params;
+
+    try {
+        const exercise = await Exercise.findById(exerciseId);
+
+        if (!exercise) {
+            return res.status(404).json({ message: "Exercise not found!" });
+        }
+
+        await exercise.remove();
+        res.status(200).json({ message: "Exercise deleted successfully!" });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     createExercise,
     getAllExercises,
+    deleteExercise,
 };

@@ -29,15 +29,31 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.write("Api routes:\n\n");
   res.write("GET /api/users - get all users\n");
+
   res.write("DELETE /api/users/:id - delete a user \n\n");
+
   res.write("POST /api/auth/login - login a user\n");
-  res.write("POST /api/auth/register - register a new user\n\n");
-  res.write("GET /api/workoutPlans - get all workout plans\n");
+  res.write("Requires email and password in the body\n\n");
+
+  res.write("POST /api/auth/register - register a new user\n");
+  res.write("Requires name, email, and password in the body\n\n");
+
+  res.write("GET /api/workoutPlans - get all workout plans\n\n");
+
   res.write("POST /api/workoutPlans - create a new workout plan\n");
+  res.write("Requires title, description, and exercises in the body. Exercices is exercice id, sets and reps.\n\n");
+
   res.write("DELETE /api/workoutPlans/:id - delete a workout plan\n");
+
   res.write("PATCH /api/workoutPlans/:id - update a workout plan\n\n");
-  res.write("GET /api/exercises - get all exercises\n");
-  res.write("POST /api/exercises - create a new exercise\n\n");
+  
+  res.write("GET /api/exercises - get all exercises\n\n");
+  res.write("POST /api/exercises - create a new exercise\n");
+  res.write("Requires title and description in the body\n\n");
+
+  res.write("DELETE /api/exercises/:id - delete an exercise\n");
+
+
   res.end();
 });
 
